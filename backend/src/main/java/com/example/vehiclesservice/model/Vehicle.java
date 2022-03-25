@@ -20,7 +20,7 @@ public class Vehicle {
     private String description;
     @Column(name="price_per_day", nullable=false)
     private double pricePerDay;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "garage_id")
     private Garage garage;
     @ElementCollection(fetch = FetchType.EAGER)
