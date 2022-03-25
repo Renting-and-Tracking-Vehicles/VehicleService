@@ -22,8 +22,8 @@ public class Vehicle {
     @Column(name="price_per_day", nullable=false)
     private double pricePerDay;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "address_id")
-    private Address address;
+    @JoinColumn(name = "garage_id")
+    private Garage garage;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "vehicle_images", joinColumns = @JoinColumn(name = "vehicle_id"))
     private Set<String> images;

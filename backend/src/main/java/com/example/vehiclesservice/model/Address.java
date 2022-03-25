@@ -16,10 +16,10 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "addressSeqGen")
     @Column(name="address_id", unique=true, nullable=false)
     private int id;
-    @Column(name="street", nullable=false)
-    private String street;
-    @Column(name="number", nullable=false)
-    private String number;
+    @Column(name="street_name", nullable=false)
+    private String streetName;
+    @Column(name="street_number", nullable=false)
+    private String streetNumber;
     @Column(name="city", nullable=false)
     private String city;
     @Column(name="postal_code")
