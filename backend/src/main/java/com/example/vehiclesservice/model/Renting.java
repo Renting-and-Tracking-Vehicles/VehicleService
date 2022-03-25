@@ -14,8 +14,11 @@ public class Renting {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rentingSeqGen")
     @Column(name="renting_id", unique=true, nullable=false)
     private int id;
-    @Column(name="rented_vehicle_id")
-    private int rentedVehicleId;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vehicle_id", nullable = false)
+    private Vehicle vehicleId;
+
     @Column(name="user_id")
     private int userId;
     @Column(name="total_price")
