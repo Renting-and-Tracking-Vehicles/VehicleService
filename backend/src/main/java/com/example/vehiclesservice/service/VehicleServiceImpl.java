@@ -5,6 +5,7 @@ import com.example.vehiclesservice.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,5 @@ public class VehicleServiceImpl implements VehicleService {
     public void deleteVehicle(Integer id) {
         vehicleRepository.deleteById(id);
     }
-
 
 }

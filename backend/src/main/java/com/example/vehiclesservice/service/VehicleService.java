@@ -1,7 +1,6 @@
 package com.example.vehiclesservice.service;
 
 import com.example.vehiclesservice.model.Vehicle;
-
 import java.util.Optional;
 
 public interface VehicleService {
@@ -12,6 +11,4 @@ public interface VehicleService {
     Iterable<Vehicle> findAll();
 
     void deleteVehicle(Integer id);
-
-
 }
