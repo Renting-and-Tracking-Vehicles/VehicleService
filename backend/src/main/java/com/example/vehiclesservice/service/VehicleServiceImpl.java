@@ -4,6 +4,7 @@ import com.example.userservice.api.RegisteredUser;
 import com.example.userservice.api.UserServiceApi;
 import com.example.vehiclesservice.model.Vehicle;
 import com.example.vehiclesservice.repository.VehicleRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class VehicleServiceImpl implements VehicleService {
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
-
-    @Autowired
-    private UserServiceApi userServiceApi;
+    private final VehicleRepository vehicleRepository;
+    private final UserServiceApi userServiceApi;
 
     @Override
     public Vehicle addVehicle(Vehicle vehicle) {
