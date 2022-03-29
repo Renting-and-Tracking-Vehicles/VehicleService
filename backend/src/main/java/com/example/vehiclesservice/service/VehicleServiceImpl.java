@@ -1,13 +1,14 @@
 package com.example.vehiclesservice.service;
 
-import com.example.userservice.api.RegisteredUser;
 import com.example.userservice.api.UserServiceApi;
+import com.example.vehiclesservice.exception.VehicleNotFoundException;
 import com.example.vehiclesservice.model.Vehicle;
 import com.example.vehiclesservice.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -24,9 +25,9 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Optional<Vehicle> findOne(Integer id){
-        System.out.println(userServiceApi.getUser(id).toString());
-        return vehicleRepository.findById(id);
+    public Optional<Vehicle> findOne(Integer id) {
+        Vehicle vehicle = vehicleRepository.findById(id).get();
+         return Optional.ofNullable(vehicle);
     }
 
     @Override

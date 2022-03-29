@@ -1,6 +1,5 @@
 package com.example.vehiclesservice.controller;
 
-import com.example.userservice.api.UserServiceApi;
 import com.example.vehiclesservice.model.Vehicle;
 import com.example.vehiclesservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,14 +47,10 @@ public class VehicleController {
     @PutMapping("/editVehicle/{vehicleId}")
     public Vehicle editVehicle(@PathVariable("vehicleId") Integer id, @RequestBody Vehicle newVehicle){
         Optional<Vehicle> editedVehicle = vehicleService.findOne(id);
-
         if(editedVehicle != null){
             newVehicle.setId(id);
-
-//            add je jer je trenutno funkcija u servisu sa save
             return vehicleService.addVehicle(newVehicle);
         }
         return null;
-
     }
 }
