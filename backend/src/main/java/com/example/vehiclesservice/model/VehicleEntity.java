@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Getter@Setter@NoArgsConstructor
-public class Vehicle {
+public class VehicleEntity {
     @Id
     @SequenceGenerator(name = "vehicleSeqGen", sequenceName = "vehicleSeqGen", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vehicleSeqGen")

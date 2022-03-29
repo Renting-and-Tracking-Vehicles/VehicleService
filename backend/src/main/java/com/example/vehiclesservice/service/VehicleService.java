@@ -1,14 +1,15 @@
 package com.example.vehiclesservice.service;
 
-import com.example.vehiclesservice.model.Vehicle;
-import java.util.Optional;
+import com.example.vehiclesservice.api.Vehicle;
+import com.example.vehiclesservice.exception.VehicleNotFoundException;
+import java.util.List;
 
 public interface VehicleService {
     Vehicle addVehicle(Vehicle vehicle);
 
-    Optional<Vehicle> findOne(Integer id);
+    Vehicle findOne(Integer id) throws VehicleNotFoundException;
 
-    Iterable<Vehicle> findAll();
+    List<Vehicle> findAll();
 
     void deleteVehicle(Integer id);
 }

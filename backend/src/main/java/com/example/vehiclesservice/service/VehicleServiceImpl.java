@@ -1,41 +1,49 @@
 package com.example.vehiclesservice.service;
 
-import com.example.userservice.api.UserServiceApi;
+import com.example.vehiclesservice.api.Vehicle;
 import com.example.vehiclesservice.exception.VehicleNotFoundException;
-import com.example.vehiclesservice.model.Vehicle;
+import com.example.vehiclesservice.model.VehicleEntity;
 import com.example.vehiclesservice.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
-    private final UserServiceApi userServiceApi;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public Vehicle addVehicle(Vehicle vehicle) {
-        return vehicleRepository.save(vehicle);
+        VehicleEntity vehicleEntity = modelMapper.map(vehicle, VehicleEntity.class);
+        vehicleRepository.save(vehicleEntity);
+        return vehicle;
     }
 
     @Override
-    public Optional<Vehicle> findOne(Integer id) {
-        Vehicle vehicle = vehicleRepository.findById(id).get();
-         return Optional.ofNullable(vehicle);
+    public Vehicle findOne(Integer id) throws VehicleNotFoundException {
+        VehicleEntity vehicle = vehicleRepository.findById(id).isPresent() ? vehicleRepository.findById(id).get() : null;
+         if(vehicle.equals(null))
+             throw new VehicleNotFoundException();
+
+         return modelMapper.map(vehicle, Vehicle.class);
     }
 
     @Override
-    public Iterable<Vehicle> findAll() { return vehicleRepository.findAll(); }
-
-    @Override
-    public void deleteVehicle(Integer id) {
-        vehicleRepository.deleteById(id);
+    public List<Vehicle> findAll() {
+        List<VehicleEntity> vehicles = vehicleRepository.findAll();
+        return mapList(vehicles, Vehicle.class);
     }
 
+    @Override
+    public void deleteVehicle(Integer id) { vehicleRepository.deleteById(id); }
+
+    private <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
+        return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
+    }
 }
