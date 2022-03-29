@@ -15,7 +15,7 @@
     <description>vehicles-service</description>
     <properties>
         <java.version>11</java.version>
-        <user-service-api.version></user-service-api.version>
+        <user-service-api.version>0.0.1-SNAPSHOT</user-service-api.version>
     </properties>
     <dependencies>
 <!--        <dependency>-->
@@ -79,7 +79,7 @@
         <dependency>
             <groupId>com.example</groupId>
             <artifactId>user-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${user-service-api.version}</version>
             <classifier>api</classifier>
         </dependency>
         <dependency>

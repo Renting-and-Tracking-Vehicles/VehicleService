@@ -43,10 +43,7 @@ public class VehicleController {
     @PutMapping("/editVehicle/{vehicleId}")
     public Vehicle editVehicle(@PathVariable("vehicleId") Integer id, @RequestBody Vehicle newVehicle) throws VehicleNotFoundException{
         Vehicle editedVehicle = vehicleService.findOne(id);
-        if(editedVehicle != null){
-            newVehicle.setId(id);
-            return vehicleService.addVehicle(newVehicle);
-        }
-        return null;
+        newVehicle.setId(id);
+        return vehicleService.addVehicle(newVehicle);
     }
 }

@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,11 +28,11 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle findOne(Integer id) throws VehicleNotFoundException {
-        VehicleEntity vehicle = vehicleRepository.findById(id).isPresent() ? vehicleRepository.findById(id).get() : null;
-         if(vehicle.equals(null))
-             throw new VehicleNotFoundException();
+        Optional<VehicleEntity> vehicle = vehicleRepository.findById(id);
+        if(vehicle.isPresent())
+            return modelMapper.map(vehicle.get(), Vehicle.class);
 
-         return modelMapper.map(vehicle, Vehicle.class);
+        throw new VehicleNotFoundException();
     }
 
     @Override
