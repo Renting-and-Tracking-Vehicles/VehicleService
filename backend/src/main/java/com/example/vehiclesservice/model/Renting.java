@@ -17,7 +17,7 @@ public class Renting {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_id", nullable = false)
-    private Vehicle vehicleId;
+    private VehicleEntity vehicleId;
 
     @Column(name="user_id")
     private int userId;

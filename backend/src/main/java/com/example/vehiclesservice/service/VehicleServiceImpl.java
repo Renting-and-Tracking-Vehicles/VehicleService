@@ -1,37 +1,50 @@
 package com.example.vehiclesservice.service;
 
-import com.example.vehiclesservice.model.Vehicle;
+import com.example.vehiclesservice.api.Vehicle;
+import com.example.vehiclesservice.exception.VehicleNotFoundException;
+import com.example.vehiclesservice.model.VehicleEntity;
 import com.example.vehiclesservice.repository.VehicleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class VehicleServiceImpl implements VehicleService {
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
     public Vehicle addVehicle(Vehicle vehicle) {
-        return vehicleRepository.save(vehicle);
+        VehicleEntity vehicleEntity = modelMapper.map(vehicle, VehicleEntity.class);
+        vehicleRepository.save(vehicleEntity);
+        return vehicle;
     }
 
     @Override
-    public Optional<Vehicle> findOne(Integer id) {
-        return vehicleRepository.findById(id);
+    public Vehicle findOne(Integer id) throws VehicleNotFoundException {
+        Optional<VehicleEntity> vehicle = vehicleRepository.findById(id);
+        if(vehicle.isPresent())
+            return modelMapper.map(vehicle.get(), Vehicle.class);
+
+        throw new VehicleNotFoundException();
     }
 
     @Override
-    public Iterable<Vehicle> findAll() {
-        return vehicleRepository.findAll();
+    public List<Vehicle> findAll() {
+        List<VehicleEntity> vehicles = vehicleRepository.findAll();
+        return mapList(vehicles, Vehicle.class);
     }
 
     @Override
-    public void deleteVehicle(Integer id) {
-        vehicleRepository.deleteById(id);
-    }
+    public void deleteVehicle(Integer id) { vehicleRepository.deleteById(id); }
 
+    private <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
+        return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
+    }
 }
