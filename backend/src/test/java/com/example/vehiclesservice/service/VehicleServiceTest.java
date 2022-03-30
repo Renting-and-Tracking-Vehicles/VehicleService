@@ -57,8 +57,8 @@ public class VehicleServiceTest {
 
     @Test
     public void testFindOneException() {
-        Assert.assertThrows(NullPointerException.class, () -> {
-            when(vehicleRepositoryMock.findById(DB_ID_FALSE)).thenReturn(null);
+        Assert.assertThrows(VehicleNotFoundException.class, () -> {
+            when(vehicleRepositoryMock.findById(DB_ID_FALSE)).thenReturn(Optional.empty());
 
             vehicleService.findOne(DB_ID_FALSE);
         });
