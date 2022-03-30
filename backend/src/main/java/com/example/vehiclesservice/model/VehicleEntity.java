@@ -1,13 +1,15 @@
 package com.example.vehiclesservice.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Getter@Setter@NoArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class VehicleEntity {
     @Id
     @SequenceGenerator(name = "vehicleSeqGen", sequenceName = "vehicleSeqGen", initialValue = 1, allocationSize = 1)
