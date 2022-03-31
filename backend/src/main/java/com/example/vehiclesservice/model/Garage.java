@@ -15,6 +15,7 @@ public class Garage {
     @Column(name="garage_id", unique=true, nullable=false)
     private int id;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="address_id")
     private Address address;
     @Column(name = "capacity", nullable = false)
     private int capacity;

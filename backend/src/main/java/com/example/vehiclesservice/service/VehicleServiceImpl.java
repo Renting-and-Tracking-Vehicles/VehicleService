@@ -44,6 +44,12 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void deleteVehicle(Integer id) { vehicleRepository.deleteById(id); }
 
+    @Override
+    public List<Vehicle> findAllAvailableVehicles() {
+        List<VehicleEntity> vehicles = vehicleRepository.findAll().stream().filter(v -> v.getRented() == false).collect(Collectors.toList());
+        return mapList(vehicles, Vehicle.class);
+    }
+
     private <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
         return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
     }
