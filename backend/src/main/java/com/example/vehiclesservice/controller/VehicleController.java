@@ -35,6 +35,11 @@ public class VehicleController {
         return vehicleService.findAll();
     }
 
+    @GetMapping("/getAvailableVehicles")
+    public Iterable<Vehicle> getAvailableVehicles(){
+        return vehicleService.findAllAvailableVehicles();
+    }
+
     @DeleteMapping("/deleteVehicle/{vehicleId}")
     public void deleteVehicle(@PathVariable("vehicleId") Integer id){
         vehicleService.deleteVehicle(id);
