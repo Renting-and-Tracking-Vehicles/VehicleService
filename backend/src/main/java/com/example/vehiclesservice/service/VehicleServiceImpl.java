@@ -42,6 +42,13 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    public Vehicle editVehicle(Vehicle vehicle) {
+        VehicleEntity vehicleEntity = modelMapper.map(vehicle, VehicleEntity.class);
+        vehicleRepository.save(vehicleEntity);
+        return vehicle;
+    }
+
+    @Override
     public void deleteVehicle(Integer id) { vehicleRepository.deleteById(id); }
 
     @Override
