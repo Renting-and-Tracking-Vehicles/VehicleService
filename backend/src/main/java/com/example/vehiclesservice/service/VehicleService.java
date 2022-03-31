@@ -12,4 +12,6 @@ public interface VehicleService {
     List<Vehicle> findAll();
 
     void deleteVehicle(Integer id);
+
+    List<Vehicle> findAllAvailableVehicles();
 }
