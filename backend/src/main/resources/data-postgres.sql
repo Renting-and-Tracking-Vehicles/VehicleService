@@ -24,8 +24,8 @@ VALUES (nextval('vehicle_seq_gen'), 'Electric car', 'Tesla Serie 3', 100, false,
        (nextval('vehicle_seq_gen'), 'Electric car', 'Genesis GV60', 250, false, 4);
 
 INSERT INTO vehicle_images(vehicle_id, images)
-VALUES (1, '../../assets/images/tesla3.jpg'),
-       (2, '../../assets/images/sPlaid.jpg'),
-       (3, '../../assets/images/etron.jpg'),
-       (4, '../../assets/images/ix.jpg'),
-       (5, '../../assets/images/genesis.jpg');
+VALUES (1, 'https://vehicle-images-levi9.s3.amazonaws.com/images/tesla3.jpg'),
+       (2, 'https://vehicle-images-levi9.s3.amazonaws.com/images/sPlaid.jpg'),
+       (3, 'https://vehicle-images-levi9.s3.amazonaws.com/images/etron.jpg'),
+       (4, 'https://vehicle-images-levi9.s3.amazonaws.com/images/ix.jpg'),
+       (5, 'https://vehicle-images-levi9.s3.amazonaws.com/images/genesis.jpg');
