@@ -1,7 +1,6 @@
 package com.example.vehiclesservice.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -30,4 +29,7 @@ public class VehicleEntity {
     private Set<String> images;
     @Column(name="is_rented", nullable=false)
     private Boolean rented;
+    @Version
+    @Column(name = "versionOptLock", columnDefinition = "integer DEFAULT 0", nullable = false)
+    private Integer version;
 }

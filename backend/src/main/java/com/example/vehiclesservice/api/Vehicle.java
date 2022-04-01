@@ -16,4 +16,5 @@ public class Vehicle {
     private Garage garage;
     private Set<String> images;
     private Boolean rented;
+    private Integer version;
 }
