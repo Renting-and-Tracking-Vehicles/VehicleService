@@ -40,7 +40,7 @@ public class RentingServiceImpl implements RentingService{
     }
 
     @Override
-    public void finishRenting(Integer id) {
+    public void finishRenting(Integer id) throws  OptimisticLockException{
         Renting renting = getRentingById(id);
         Vehicle vehicle = renting.getVehicle();
         vehicle.setRented(false);

@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Getter@Setter@NoArgsConstructor@AllArgsConstructor
 @Entity
-public class Address {
+public class AddressEntity {
 
     @Id
     @SequenceGenerator(name = "addressSeqGen", sequenceName = "addressSeqGen", initialValue = 1, allocationSize = 1)

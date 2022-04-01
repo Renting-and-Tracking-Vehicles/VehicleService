@@ -15,10 +15,7 @@ public class RentingController {
     private RentingService rentingService;
 
     @PostMapping("/startRenting")
-    public Renting startRenting(@RequestBody Renting renting) throws VehicleNotFoundException {
-        System.out.println(renting.toString());
-        return rentingService.startRenting(renting);
-    }
+    public Renting startRenting(@RequestBody Renting renting) throws VehicleNotFoundException { return rentingService.startRenting(renting); }
 
     @DeleteMapping("/finishRenting/{id}")
     public void finishRenting(@PathVariable("id") Integer id) {  rentingService.finishRenting(id); }
