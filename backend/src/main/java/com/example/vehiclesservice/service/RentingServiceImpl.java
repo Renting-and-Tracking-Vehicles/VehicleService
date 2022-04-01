@@ -9,6 +9,9 @@ import com.example.vehiclesservice.repository.RentingRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.OptimisticLockException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +25,7 @@ public class RentingServiceImpl implements RentingService{
     private final ModelMapper modelMapper = new ModelMapper();
 
     @Override
+    @Transactional(readOnly = false)
     public Renting startRenting(Renting renting) throws VehicleNotFoundException {
         RentingEntity rentingEntity = modelMapper.map(renting, RentingEntity.class);
         changeCarStatusToRented(rentingEntity);
@@ -29,7 +33,7 @@ public class RentingServiceImpl implements RentingService{
         return renting;
     }
 
-    private void changeCarStatusToRented(RentingEntity rentingEntity) throws VehicleNotFoundException {
+    private void changeCarStatusToRented(RentingEntity rentingEntity) throws VehicleNotFoundException, OptimisticLockException {
         Vehicle vehicle = vehicleService.findOne(rentingEntity.getVehicle().getId());
         vehicle.setRented(true);
         vehicleService.editVehicle(vehicle);
