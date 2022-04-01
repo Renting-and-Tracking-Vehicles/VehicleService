@@ -1,4 +1,4 @@
-INSERT INTO address(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
+INSERT INTO address_entity(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
 VALUES (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Bulevar Kralja Petra I', '11'),
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.1, 19.5, '21000', 'Bulevar oslobodjenja', '21'),
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Branka Bajica', '9L'),
@@ -9,7 +9,7 @@ VALUES (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', '
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Petra Drapsina', '2'),
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Bulevar Mihaila Pupina', '9');
 
-INSERT INTO garage(garage_id, capacity, address_id)
+INSERT INTO garage_entity(garage_id, capacity, address_id)
 VALUES (nextval('garage_seq_gen'), 20, 1),
        (nextval('garage_seq_gen'), 25, 2),
        (nextval('garage_seq_gen'), 35, 3),

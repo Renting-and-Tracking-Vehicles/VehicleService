@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter @NoArgsConstructor
-public class Garage {
+public class GarageEntity {
     @Id
     @SequenceGenerator(name = "garageSeqGen", sequenceName = "garageSeqGen", initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "garageSeqGen")
@@ -16,7 +16,7 @@ public class Garage {
     private int id;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="address_id")
-    private Address address;
+    private AddressEntity address;
     @Column(name = "capacity", nullable = false)
     private int capacity;
 }

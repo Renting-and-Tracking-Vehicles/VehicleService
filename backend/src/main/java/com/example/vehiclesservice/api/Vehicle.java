@@ -1,6 +1,6 @@
 package com.example.vehiclesservice.api;
 
-import com.example.vehiclesservice.model.Garage;
+import com.example.vehiclesservice.model.GarageEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ public class Vehicle {
     private String model;
     private String description;
     private double pricePerDay;
-    private Garage garage;
+    private GarageEntity garage;
     private Set<String> images;
     private Boolean rented;
     private Integer version;

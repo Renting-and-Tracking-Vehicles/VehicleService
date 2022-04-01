@@ -23,7 +23,7 @@ public class VehicleEntity {
     private double pricePerDay;
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "garage_id")
-    private Garage garage;
+    private GarageEntity garage;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "vehicle_images", joinColumns = @JoinColumn(name = "vehicle_id"))
     private Set<String> images;
