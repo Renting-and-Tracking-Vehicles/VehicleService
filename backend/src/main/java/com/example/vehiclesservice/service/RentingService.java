@@ -9,9 +9,9 @@ public interface RentingService {
 
     Renting startRenting(Renting renting) throws VehicleNotFoundException;
 
-    List<Renting> getRentingsByUserId(int userId);
+    List<Renting> getCurrentRentingsByUserId(int userId);
 
     Renting getRentingById(int id);
 
-    void finishRenting(Integer id);
+    Renting finishRenting(Renting renting);
 }

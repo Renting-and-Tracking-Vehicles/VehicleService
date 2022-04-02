@@ -15,4 +15,5 @@ public class Renting {
     private double totalPrice;
     private int durationInDays;
     private Date startDay;
+    private Date endDay;
 }

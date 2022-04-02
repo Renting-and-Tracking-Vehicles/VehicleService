@@ -28,28 +28,32 @@ public class RentingServiceImpl implements RentingService{
     @Transactional(readOnly = false)
     public Renting startRenting(Renting renting) throws VehicleNotFoundException {
         RentingEntity rentingEntity = modelMapper.map(renting, RentingEntity.class);
-        changeCarStatusToRented(rentingEntity);
+        changeCarStatusToRented(renting.getVehicle());
         rentingRepository.save(rentingEntity);
         return renting;
     }
 
-    private void changeCarStatusToRented(RentingEntity rentingEntity) throws VehicleNotFoundException, OptimisticLockException {
-        Vehicle vehicle = vehicleService.findOne(rentingEntity.getVehicle().getId());
+    @Override
+    public Renting finishRenting(Renting renting) throws  OptimisticLockException{
+        changeCarStatusToAvailable(renting.getVehicle());
+        RentingEntity rentingEntity = modelMapper.map(renting, RentingEntity.class);
+        rentingRepository.save(rentingEntity);
+        return renting;
+    }
+
+    private void changeCarStatusToRented(Vehicle vehicle) {
         vehicle.setRented(true);
         vehicleService.editVehicle(vehicle);
     }
 
-    @Override
-    public void finishRenting(Integer id) throws  OptimisticLockException{
-        Renting renting = getRentingById(id);
-        Vehicle vehicle = renting.getVehicle();
+    private void changeCarStatusToAvailable(Vehicle vehicle) {
         vehicle.setRented(false);
         vehicleService.editVehicle(vehicle);
     }
 
     @Override
-    public List<Renting> getRentingsByUserId(int userId) {
-        List<RentingEntity> rentings = rentingRepository.getRentingByUserId(userId);
+    public List<Renting> getCurrentRentingsByUserId(int userId) {
+        List<RentingEntity> rentings = rentingRepository.getRentingByUserId(userId).stream().filter(r -> r.getEndDay() == null).collect(Collectors.toList());
         return mapList(rentings, Renting.class);
     }
 
