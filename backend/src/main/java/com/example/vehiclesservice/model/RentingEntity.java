@@ -25,4 +25,6 @@ public class RentingEntity {
     private int durationInDays;
     @Column(name="start_day")
     private Date startDay;
+    @Column(name="end_day")
+    private Date endDay;
 }

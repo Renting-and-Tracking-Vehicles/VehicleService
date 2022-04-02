@@ -17,9 +17,9 @@ public class RentingController {
     @PostMapping("/startRenting")
     public Renting startRenting(@RequestBody Renting renting) throws VehicleNotFoundException { return rentingService.startRenting(renting); }
 
-    @DeleteMapping("/finishRenting/{id}")
-    public void finishRenting(@PathVariable("id") Integer id) {  rentingService.finishRenting(id); }
+    @PutMapping("/finishRenting")
+    public Renting finishRenting(@RequestBody Renting renting) { return rentingService.finishRenting(renting); }
 
     @GetMapping("/userRentings/{id}")
-    public Iterable<Renting> getUserRentings(@PathVariable("id") Integer id) { return rentingService.getRentingsByUserId(id); }
+    public Iterable<Renting> getUserRentings(@PathVariable("id") Integer id) { return rentingService.getCurrentRentingsByUserId(id); }
 }

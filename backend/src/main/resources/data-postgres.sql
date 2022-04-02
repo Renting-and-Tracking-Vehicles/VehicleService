@@ -29,3 +29,6 @@ VALUES (1, 'https://vehicle-images-levi9.s3.amazonaws.com/images/tesla3.jpg'),
        (3, 'https://vehicle-images-levi9.s3.amazonaws.com/images/etron.jpg'),
        (4, 'https://vehicle-images-levi9.s3.amazonaws.com/images/ix.jpg'),
        (5, 'https://vehicle-images-levi9.s3.amazonaws.com/images/genesis.jpg');
+
+--INSERT INTO renting_entity(renting_id, duration_in_days, end_day, start_day,total_price, user_id, vehicle_id)
+--VALUES (nextval('renting_seq_gen'), 2, '2022-04-01', '2022-03-30', 1500, 1, 1);
