@@ -3,7 +3,6 @@ package com.example.vehiclesservice.service;
 import com.example.vehiclesservice.api.Renting;
 import com.example.vehiclesservice.api.Vehicle;
 import com.example.vehiclesservice.exception.RentingNotFoundException;
-import com.example.vehiclesservice.exception.VehicleNotFoundException;
 import com.example.vehiclesservice.helper.CollectionMapper;
 import com.example.vehiclesservice.model.RentingEntity;
 import com.example.vehiclesservice.repository.RentingRepository;
@@ -27,7 +26,7 @@ public class RentingServiceImpl implements RentingService{
 
     @Override
     @Transactional(readOnly = false)
-    public Renting startRenting(Renting renting) throws VehicleNotFoundException {
+    public Renting startRenting(Renting renting) {
         RentingEntity rentingEntity = modelMapper.map(renting, RentingEntity.class);
         changeCarStatusToRented(renting.getVehicle());
         rentingRepository.save(rentingEntity);
@@ -59,7 +58,7 @@ public class RentingServiceImpl implements RentingService{
     }
 
     @Override
-    public Renting getRentingById(int id) throws RentingNotFoundException {
+    public Renting getRentingById(int id) {
         Optional<RentingEntity> renting = rentingRepository.findById(id);
         if(renting.isPresent())
             return modelMapper.map(renting.get(), Renting.class);

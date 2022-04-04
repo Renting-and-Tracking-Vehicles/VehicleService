@@ -14,12 +14,12 @@ public class RentingController {
 
     private RentingService rentingService;
 
-    @PostMapping("/startRenting")
+    @PostMapping("/start-renting")
     public Renting startRenting(@RequestBody Renting renting) throws VehicleNotFoundException { return rentingService.startRenting(renting); }
 
-    @PutMapping("/finishRenting")
+    @PutMapping("/finish-renting")
     public Renting finishRenting(@RequestBody Renting renting) { return rentingService.finishRenting(renting); }
 
-    @GetMapping("/userRentings/{id}")
+    @GetMapping("/user-rentings/{id}")
     public Iterable<Renting> getUserRentings(@PathVariable("id") Integer id) { return rentingService.getCurrentRentingsByUserId(id); }
 }

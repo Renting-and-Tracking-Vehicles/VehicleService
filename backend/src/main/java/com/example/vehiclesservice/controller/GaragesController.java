@@ -15,6 +15,6 @@ public class GaragesController {
 
     private final GarageService garageService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/")
     public Iterable<Garage> getAllGarages() { return garageService.getAllGarages(); }
 }

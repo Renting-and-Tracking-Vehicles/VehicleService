@@ -28,7 +28,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle findOne(Integer id) throws VehicleNotFoundException {
+    public Vehicle findOne(Integer id)  {
         Optional<VehicleEntity> vehicle = vehicleRepository.findById(id);
         if(vehicle.isPresent())
             return modelMapper.map(vehicle.get(), Vehicle.class);
