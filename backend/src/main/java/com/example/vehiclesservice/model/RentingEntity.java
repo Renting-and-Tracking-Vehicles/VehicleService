@@ -1,13 +1,14 @@
 package com.example.vehiclesservice.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Getter@Setter@NoArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class RentingEntity {
     @Id
     @SequenceGenerator(name = "rentingSeqGen", sequenceName = "rentingSeqGen", initialValue = 1, allocationSize = 1)

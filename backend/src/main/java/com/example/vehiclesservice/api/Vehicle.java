@@ -1,19 +1,18 @@
 package com.example.vehiclesservice.api;
 
-import com.example.vehiclesservice.model.GarageEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import java.util.Set;
 
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Vehicle {
     private int id;
     private String model;
     private String description;
     private double pricePerDay;
-    private GarageEntity garage;
+    private Garage garage;
     private Set<String> images;
     private Boolean rented;
     private Integer version;

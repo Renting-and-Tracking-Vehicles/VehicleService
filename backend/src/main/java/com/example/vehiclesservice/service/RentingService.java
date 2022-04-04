@@ -1,6 +1,7 @@
 package com.example.vehiclesservice.service;
 
 import com.example.vehiclesservice.api.Renting;
+import com.example.vehiclesservice.exception.RentingNotFoundException;
 import com.example.vehiclesservice.exception.VehicleNotFoundException;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface RentingService {
 
     List<Renting> getCurrentRentingsByUserId(int userId);
 
-    Renting getRentingById(int id);
+    Renting getRentingById(int id) throws RentingNotFoundException;
 
     Renting finishRenting(Renting renting);
 }

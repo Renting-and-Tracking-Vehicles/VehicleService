@@ -4,6 +4,7 @@ import com.example.vehiclesservice.api.Renting;
 import com.example.vehiclesservice.api.Vehicle;
 import com.example.vehiclesservice.exception.RentingNotFoundException;
 import com.example.vehiclesservice.exception.VehicleNotFoundException;
+import com.example.vehiclesservice.helper.CollectionMapper;
 import com.example.vehiclesservice.model.RentingEntity;
 import com.example.vehiclesservice.repository.RentingRepository;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class RentingServiceImpl implements RentingService{
 
     private final RentingRepository rentingRepository;
     private final VehicleService vehicleService;
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper;
 
     @Override
     @Transactional(readOnly = false)
@@ -54,19 +55,15 @@ public class RentingServiceImpl implements RentingService{
     @Override
     public List<Renting> getCurrentRentingsByUserId(int userId) {
         List<RentingEntity> rentings = rentingRepository.getRentingByUserId(userId).stream().filter(r -> r.getEndDay() == null).collect(Collectors.toList());
-        return mapList(rentings, Renting.class);
+        return CollectionMapper.mapList(rentings, Renting.class);
     }
 
     @Override
-    public Renting getRentingById(int id) {
+    public Renting getRentingById(int id) throws RentingNotFoundException {
         Optional<RentingEntity> renting = rentingRepository.findById(id);
         if(renting.isPresent())
             return modelMapper.map(renting.get(), Renting.class);
 
         throw new RentingNotFoundException();
-    }
-
-    private <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
-        return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
     }
 }

@@ -1,11 +1,11 @@
 package com.example.vehiclesservice.api;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data @NoArgsConstructor@AllArgsConstructor@Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Address {
     private int id;
     private String streetName;
