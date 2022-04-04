@@ -1,4 +1,4 @@
-INSERT INTO address(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
+INSERT INTO address_entity(address_id, city, country, latitude, longitude, postal_code, street_name, street_number)
 VALUES (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Bulevar Kralja Petra I', '11'),
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.1, 19.5, '21000', 'Bulevar oslobodjenja', '21'),
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Branka Bajica', '9L'),
@@ -9,7 +9,7 @@ VALUES (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', '
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Petra Drapsina', '2'),
        (nextval('address_seq_gen'), 'Novi Sad', 'Srbija', 44.0, 19.0, '21000', 'Bulevar Mihaila Pupina', '9');
 
-INSERT INTO garage(garage_id, capacity, address_id)
+INSERT INTO garage_entity(garage_id, capacity, address_id)
 VALUES (nextval('garage_seq_gen'), 20, 1),
        (nextval('garage_seq_gen'), 25, 2),
        (nextval('garage_seq_gen'), 35, 3),
@@ -29,3 +29,6 @@ VALUES (1, 'https://vehicle-images-levi9.s3.amazonaws.com/images/tesla3.jpg'),
        (3, 'https://vehicle-images-levi9.s3.amazonaws.com/images/etron.jpg'),
        (4, 'https://vehicle-images-levi9.s3.amazonaws.com/images/ix.jpg'),
        (5, 'https://vehicle-images-levi9.s3.amazonaws.com/images/genesis.jpg');
+
+--INSERT INTO renting_entity(renting_id, duration_in_days, end_day, start_day,total_price, user_id, vehicle_id)
+--VALUES (nextval('renting_seq_gen'), 2, '2022-04-01', '2022-03-30', 1500, 1, 1);

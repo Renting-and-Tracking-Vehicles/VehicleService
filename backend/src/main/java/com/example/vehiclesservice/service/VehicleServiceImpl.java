@@ -2,6 +2,7 @@ package com.example.vehiclesservice.service;
 
 import com.example.vehiclesservice.api.Vehicle;
 import com.example.vehiclesservice.exception.VehicleNotFoundException;
+import com.example.vehiclesservice.helper.CollectionMapper;
 import com.example.vehiclesservice.model.VehicleEntity;
 import com.example.vehiclesservice.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper;
 
     @Override
     public Vehicle addVehicle(Vehicle vehicle) {
@@ -27,7 +28,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle findOne(Integer id) throws VehicleNotFoundException {
+    public Vehicle findOne(Integer id)  {
         Optional<VehicleEntity> vehicle = vehicleRepository.findById(id);
         if(vehicle.isPresent())
             return modelMapper.map(vehicle.get(), Vehicle.class);
@@ -38,7 +39,14 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public List<Vehicle> findAll() {
         List<VehicleEntity> vehicles = vehicleRepository.findAll();
-        return mapList(vehicles, Vehicle.class);
+        return CollectionMapper.mapList(vehicles, Vehicle.class);
+    }
+
+    @Override
+    public Vehicle editVehicle(Vehicle vehicle) {
+        VehicleEntity vehicleEntity = modelMapper.map(vehicle, VehicleEntity.class);
+        vehicleRepository.save(vehicleEntity);
+        return vehicle;
     }
 
     @Override
@@ -47,10 +55,6 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public List<Vehicle> findAllAvailableVehicles() {
         List<VehicleEntity> vehicles = vehicleRepository.findAll().stream().filter(v -> v.getRented() == false).collect(Collectors.toList());
-        return mapList(vehicles, Vehicle.class);
-    }
-
-    private <S, T> List<T> mapList(List<S> source, Class<T> targetClass) {
-        return source.stream().map(element -> modelMapper.map(element, targetClass)).collect(Collectors.toList());
+        return CollectionMapper.mapList(vehicles, Vehicle.class);
     }
 }

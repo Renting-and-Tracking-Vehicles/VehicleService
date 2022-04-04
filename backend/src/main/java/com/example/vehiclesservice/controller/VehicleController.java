@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping(value = "/vehicle", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
@@ -22,30 +21,30 @@ public class VehicleController {
 
     private VehicleService vehicleService;
 
-    @PostMapping("/addVehicle")
+    @PostMapping("/")
     public Vehicle addVehicle(@RequestBody Vehicle vehicle){
         return vehicleService.addVehicle(vehicle);
     }
 
-    @GetMapping("/getVehicle/{vehicleId}")
+    @GetMapping("/{vehicleId}")
     public Vehicle getVehicles(@PathVariable("vehicleId") Integer id) throws VehicleNotFoundException { return vehicleService.findOne(id); }
 
-    @GetMapping("/getVehicle")
+    @GetMapping("/")
     public Iterable<Vehicle> getVehicles(){
         return vehicleService.findAll();
     }
 
-    @GetMapping("/getAvailableVehicles")
+    @GetMapping("/available-vehicles")
     public Iterable<Vehicle> getAvailableVehicles(){
         return vehicleService.findAllAvailableVehicles();
     }
 
-    @DeleteMapping("/deleteVehicle/{vehicleId}")
+    @DeleteMapping("/{vehicleId}")
     public void deleteVehicle(@PathVariable("vehicleId") Integer id){
         vehicleService.deleteVehicle(id);
     }
 
-    @PutMapping("/editVehicle/{vehicleId}")
+    @PutMapping("/{vehicleId}")
     public Vehicle editVehicle(@PathVariable("vehicleId") Integer id, @RequestBody Vehicle newVehicle) throws VehicleNotFoundException{
         Vehicle editedVehicle = vehicleService.findOne(id);
         newVehicle.setId(id);
