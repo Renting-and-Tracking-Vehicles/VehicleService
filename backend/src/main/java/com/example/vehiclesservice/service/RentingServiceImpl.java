@@ -58,6 +58,12 @@ public class RentingServiceImpl implements RentingService{
     }
 
     @Override
+    public List<Renting> getRentingHistoryByUserId(int userId) {
+        List<RentingEntity> rentings = rentingRepository.getRentingByUserId(userId).stream().filter(r -> r.getEndDay() != null).collect(Collectors.toList());
+        return CollectionMapper.mapList(rentings, Renting.class);
+    }
+
+    @Override
     public Renting getRentingById(int id) {
         Optional<RentingEntity> renting = rentingRepository.findById(id);
         if(renting.isPresent())
