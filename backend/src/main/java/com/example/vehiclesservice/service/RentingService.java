@@ -10,6 +10,8 @@ public interface RentingService {
 
     List<Renting> getCurrentRentingsByUserId(int userId);
 
+    List<Renting> getRentingHistoryByUserId(int userId);
+
     Renting getRentingById(int id);
 
     Renting finishRenting(Renting renting);

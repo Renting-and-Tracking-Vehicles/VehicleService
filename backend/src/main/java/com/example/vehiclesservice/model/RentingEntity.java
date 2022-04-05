@@ -28,4 +28,10 @@ public class RentingEntity {
     private Date startDay;
     @Column(name="end_day")
     private Date endDay;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "start_garage_id", nullable = false)
+    private GarageEntity startGarage;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "end_garage_id")
+    private GarageEntity endGarage;
 }

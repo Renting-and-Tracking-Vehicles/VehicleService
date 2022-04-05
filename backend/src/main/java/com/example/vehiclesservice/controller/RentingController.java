@@ -20,6 +20,9 @@ public class RentingController {
     @PutMapping("/finish-renting")
     public Renting finishRenting(@RequestBody Renting renting) { return rentingService.finishRenting(renting); }
 
-    @GetMapping("/user-rentings/{id}")
+    @GetMapping("/current-rentings/{id}")
     public Iterable<Renting> getUserRentings(@PathVariable("id") Integer id) { return rentingService.getCurrentRentingsByUserId(id); }
+
+    @GetMapping("/rentings-history/{id}")
+    public Iterable<Renting> getUserHistoryOfRentings(@PathVariable("id") Integer id) { return rentingService.getRentingHistoryByUserId(id); }
 }

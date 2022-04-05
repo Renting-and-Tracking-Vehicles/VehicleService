@@ -15,4 +15,6 @@ public class Renting {
     private int durationInDays;
     private Date startDay;
     private Date endDay;
+    private Garage startGarage;
+    private Garage endGarage;
 }
