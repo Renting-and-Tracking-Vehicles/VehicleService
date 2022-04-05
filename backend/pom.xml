@@ -138,6 +138,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>vehicle-service-aws</finalName>
     </build>
 
 </project>
