@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/vehicle", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/vehicles/vehicle", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 @AllArgsConstructor
 public class VehicleController {
