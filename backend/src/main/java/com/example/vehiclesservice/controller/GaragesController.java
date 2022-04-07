@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/garage", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/vehicles/garage", produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 public class GaragesController {
 
