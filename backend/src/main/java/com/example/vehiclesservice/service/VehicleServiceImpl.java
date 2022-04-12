@@ -8,6 +8,7 @@ import com.example.vehiclesservice.repository.VehicleRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +44,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public Vehicle editVehicle(Vehicle vehicle) {
         VehicleEntity vehicleEntity = modelMapper.map(vehicle, VehicleEntity.class);
         vehicleRepository.save(vehicleEntity);

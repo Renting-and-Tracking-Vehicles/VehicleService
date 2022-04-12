@@ -5,6 +5,7 @@ import com.example.vehiclesservice.exception.VehicleNotFoundException;
 import com.example.vehiclesservice.service.RentingService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,9 @@ public class RentingController {
     private RentingService rentingService;
 
     @PostMapping("/start-renting")
-    public Renting startRenting(@RequestBody Renting renting) throws VehicleNotFoundException { return rentingService.startRenting(renting); }
+    public Renting startRenting(@RequestBody Renting renting) throws ObjectOptimisticLockingFailureException {
+        return rentingService.startRenting(renting);
+    }
 
     @PutMapping("/finish-renting")
     public Renting finishRenting(@RequestBody Renting renting) { return rentingService.finishRenting(renting); }
